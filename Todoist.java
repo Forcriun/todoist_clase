@@ -89,5 +89,26 @@ class Todoist
         System.out.println("Tareas sin completar: " + numTareasSinCompletar + "("+ (numTareasSinCompletar*100)/tareas.size() +"%)");
         System.out.println("Total de tareas: " + tareas.size());
     }
+
+    /**
+     * Imprime todos los datos de la tarea con mayor prioridad. Si hay empate,
+     * imprime la última encontrada. Si no hay tareas no imprime nada.
+     */
+    public void imprimirTareaMasPrioritaria(){
+        if (tareas.size() > 0){
+            Tarea tareaMasPrioritaria = new Tarea("");
+            int numPosicion = 0;
+            int posicionTareaMasPrioritaria = 0;
+            while(numPosicion < tareas.size()){
+                Tarea tarea = tareas.get(numPosicion);
+                if(tarea.getPrioridad() >= tareaMasPrioritaria.getPrioridad()){
+                    tareaMasPrioritaria = tarea;
+                    posicionTareaMasPrioritaria++;
+                }
+                numPosicion++;
+            }
+            System.out.println(tareaMasPrioritaria.getCadenaFormateada(posicionTareaMasPrioritaria));
+        }
+    }
 }
 
