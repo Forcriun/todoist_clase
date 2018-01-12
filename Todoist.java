@@ -110,5 +110,23 @@ class Todoist
             System.out.println(tareaMasPrioritaria.getCadenaFormateada(posicionTareaMasPrioritaria));
         }
     }
+    
+    // Posibles metodos de fijado de fecha limite
+    
+    /**
+     * Metodo que permite una fecha limite a la tarea indicada por parametro. La fecha limite se
+     * introduce como cadena de texto con formato "yyyy-mm-dd".
+     */
+    public void fijarFechaLimite(int indiceTarea, String nuevaFechaLimite){
+        tareas.get(indiceTarea).setFechaLimite(nuevaFechaLimite);
+    }
+    
+    /**
+     * Metodo que permite una fecha limite a la tarea indicada por parametro. La fecha limite se
+     * introduce como cadena de texto con formato "yyyy-mm-dd".
+     */
+    public void fijarFechaLimite(int indiceTarea, int ano, int mes, int dia){
+        tareas.get(indiceTarea).setFechaLimite(ano,mes,dia);
+    }
 }
 
