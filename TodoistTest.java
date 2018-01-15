@@ -60,8 +60,33 @@ public class TodoistTest
         System.out.println();
         todoist1.fijarNuevaPrioridad(2,3);
         todoist1.mostrarTareasNumeradas();
+        System.out.println();
         System.out.println("Mostramos por pantalla los parciales y totales de tareas en la lista:");
+        System.out.println();
         todoist1.mostrarInfoTareas();
     }
+
+    @Test
+    public void test_prioridades()
+    {
+        Todoist todoist1 = new Todoist();
+        System.out.println("Creamos una lista de 5 tareas con prioridades variadas:");
+        System.out.println();
+        todoist1.addTarea("lavar la ropa");
+        todoist1.addTarea("fregar los platos");
+        todoist1.addTarea("barrer el suelo");
+        todoist1.addTarea("sacar la basura");
+        todoist1.addTarea("dar de comer al gato");
+        todoist1.fijarNuevaPrioridad(2, 3);
+        todoist1.fijarNuevaPrioridad(3, 3);
+        todoist1.fijarNuevaPrioridad(4, 2);
+        todoist1.mostrarTareasNumeradas();
+        System.out.println();
+        System.out.println("Mostramos la última tarea de mayor prioridad:");
+        System.out.println();
+        todoist1.imprimirTareaMasPrioritaria();
+        todoist1.imprimirTareaMenosPrioritaria();        
+    }
 }
+
 

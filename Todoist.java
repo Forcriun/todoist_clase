@@ -33,10 +33,10 @@ class Todoist
      */
     public void mostrarTareasNumeradas()
     {
-        int numeroPosicion = 1;
-        for (Tarea tarea : tareas){
-            System.out.println(tarea.getCadenaFormateada(numeroPosicion));
-            numeroPosicion++;
+        int posicionTareaActual = 0;
+        while (posicionTareaActual < tareas.size()) {
+            System.out.println((posicionTareaActual+1) + ". " + tareas.get(posicionTareaActual).getCadenaFormateada());
+            posicionTareaActual++;
         }
     }
 
@@ -46,7 +46,7 @@ class Todoist
         Iterator<Tarea> it = tareas.iterator();
         while (it.hasNext()){
             Tarea tarea = it.next();
-            System.out.println(tarea.getCadenaFormateada(numeroPosicion));
+            System.out.println(tarea.getCadenaFormateada());
             numeroPosicion++;
         }
     }
@@ -88,6 +88,57 @@ class Todoist
         System.out.println("Tareas completadas: " + numTareasCompletadas + "("+ (numTareasCompletadas*100)/tareas.size() +"%)");
         System.out.println("Tareas sin completar: " + numTareasSinCompletar + "("+ (numTareasSinCompletar*100)/tareas.size() +"%)");
         System.out.println("Total de tareas: " + tareas.size());
+    }
+
+    /**
+     * Imprime todos los datos de la tarea con mayor prioridad. Si hay empate,
+     * imprime la última encontrada. Si no hay tareas no imprime nada.
+     */
+    public void imprimirTareaMasPrioritaria(){
+        if (tareas.size() > 0){
+            Tarea tareaMasPrioritaria = tareas.get(0);
+            for(Tarea tarea : tareas){
+                if(tarea.getPrioridad() >= tareaMasPrioritaria.getPrioridad()){
+                    tareaMasPrioritaria = tarea;
+                }
+            }
+            System.out.println(tareaMasPrioritaria.getCadenaFormateada());
+        }
+    }
+    
+    
+    /**
+     * Imprime todos los datos de la tarea con menor prioridad. Si hay empate,
+     * imprime por pantalla los datos de la última encontrada. Si no hay tareas,
+     * no imprime nada
+     */
+    public void imprimirTareaMenosPrioritaria(){
+        if (tareas.size() > 0){
+            Tarea tareaMenosPrioritaria = tareas.get(0);
+            for(Tarea tarea : tareas){
+                if(tarea.getPrioridad() >= tareaMenosPrioritaria.getPrioridad()){
+                    tareaMenosPrioritaria = tarea;
+                }
+            }
+            System.out.println(tareaMenosPrioritaria.getCadenaFormateada());
+        }
+    }
+    // Posibles metodos de fijado de fecha limite
+    
+    /**
+     * Metodo que permite una fecha limite a la tarea indicada por parametro. La fecha limite se
+     * introduce como cadena de texto con formato "yyyy-mm-dd".
+     */
+    public void fijarFechaLimite(int indiceTarea, String nuevaFechaLimite){
+        tareas.get(indiceTarea).setFechaLimite(nuevaFechaLimite);
+    }
+    
+    /**
+     * Metodo que permite una fecha limite a la tarea indicada por parametro. La fecha limite se
+     * introduce como cadena de texto con formato "yyyy-mm-dd".
+     */
+    public void fijarFechaLimite(int indiceTarea, int ano, int mes, int dia){
+        tareas.get(indiceTarea).setFechaLimite(ano,mes,dia);
     }
 }
 
