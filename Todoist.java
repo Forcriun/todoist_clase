@@ -46,7 +46,7 @@ class Todoist
         Iterator<Tarea> it = tareas.iterator();
         while (it.hasNext()){
             Tarea tarea = it.next();
-            System.out.println(tarea.getCadenaFormateada());
+            System.out.println(tarea.getCadenaFormateadaIterador(numeroPosicion));
             numeroPosicion++;
         }
     }
@@ -123,6 +123,7 @@ class Todoist
             System.out.println(tareaMenosPrioritaria.getCadenaFormateada());
         }
     }
+    
     // Posibles metodos de fijado de fecha limite
     
     /**

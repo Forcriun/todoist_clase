@@ -49,12 +49,27 @@ public class Tarea
      * un "[X]" delante de la tarea; si no esta completada muestra un "[ ]"
      */
     public String getCadenaFormateada(){
-        String cadenaFormateada = cadena + " Prioridad: " + prioridad + ". Fecha límite: " + fechaLimite;
+        String cadenaFormateada = cadena + ". Prioridad: " + prioridad + ". Fecha límite: " + fechaLimite;
         if (completada){
             cadenaFormateada = "[X] " + cadenaFormateada;
         }
         else {
             cadenaFormateada = "[ ] " + cadenaFormateada;
+        }
+        return cadenaFormateada;
+    }
+    
+    /**
+     * @return Devuelve la tarea. Si la tarea esta completada, entonces muestra
+     * un "[X]" delante de la tarea; si no esta completada muestra un "[ ]"
+     */
+    public String getCadenaFormateadaIterador(int numeroPosicion){
+        String cadenaFormateada = cadena + ". Prioridad: " + prioridad + ". Fecha límite: " + fechaLimite;
+        if (completada){
+            cadenaFormateada = numeroPosicion + ".- " + "[X] " + cadenaFormateada;
+        }
+        else {
+            cadenaFormateada = numeroPosicion + ".- " +  "[ ] " + cadenaFormateada;
         }
         return cadenaFormateada;
     }

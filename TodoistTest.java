@@ -85,7 +85,7 @@ public class TodoistTest
         System.out.println("Mostramos la última tarea de mayor prioridad:");
         System.out.println();
         todoist1.imprimirTareaMasPrioritaria();
-        todoist1.imprimirTareaMenosPrioritaria();        
+        todoist1.imprimirTareaMenosPrioritaria();
     }
 }
 
