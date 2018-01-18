@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Clase que representa las tareas almacenadas en nuestra lista de
@@ -27,7 +28,7 @@ public class Tarea
         this.cadena = cadena;
         prioridad = 1;
         fechaCreacion = LocalDate.now();
-        //fechaLimite = null;
+        fechaLimite = null;
     }
 
     /**
@@ -49,7 +50,10 @@ public class Tarea
      * un "[X]" delante de la tarea; si no esta completada muestra un "[ ]"
      */
     public String getCadenaFormateada(){
-        String cadenaFormateada = cadena + ". Prioridad: " + prioridad + ". Fecha límite: " + fechaLimite;
+        String cadenaFormateada = cadena + ". Prioridad: " + prioridad + ".";
+        if(fechaLimite != null){
+            cadenaFormateada = cadena + ". Prioridad: " + prioridad + ". Fecha límite: " + fechaEsp(fechaLimite);
+        }
         if (completada){
             cadenaFormateada = "[X] " + cadenaFormateada;
         }
@@ -58,7 +62,42 @@ public class Tarea
         }
         return cadenaFormateada;
     }
-    
+
+    /**
+     * Metodo para dar formato español a las fechas de las tareas.
+     * @param fechaAFormatear La fecha a formatear.
+     * @return La cadena de la fecha ya formateada.
+     */
+    public String fechaEsp(LocalDate fechaAFormatear){
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd' of 'MMMM' of 'yyyy");        
+        String fechaEspanol = fechaAFormatear.format(formateador);
+        return fechaEspanol;
+    }
+
+    /**
+     * Metodo rudimentario con el que conseguiamos obtener el mes en formato español.
+     * 
+    public String mesEspañol()
+    {
+    String mes = "" + fechaLimite.getMonth();
+    switch (mes){
+    case "JANUARY": mes = "Enero"; break;
+    case "FEBRUARY": mes = "Febrero"; break;
+    case "MARCH": mes = "Marzo"; break;
+    case "APRIL": mes = "Abril"; break;
+    case "MAY": mes = "Mayo"; break;
+    case "JUNE": mes = "Junio"; break;
+    case "JULY": mes = "Julio"; break;
+    case "AUGUST": mes = "Agosto"; break;
+    case "SEPTEMBER": mes = "Septiembre"; break;
+    case "OCTOBER": mes = "Octubre"; break;
+    case "NOVEMBER": mes = "Noviembre"; break;
+    case "DECEMBER": mes = "Diciembre"; break;
+    }
+    return mes;
+    }
+     */
+
     /**
      * @return Devuelve la tarea. Si la tarea esta completada, entonces muestra
      * un "[X]" delante de la tarea; si no esta completada muestra un "[ ]"
@@ -112,9 +151,7 @@ public class Tarea
         }
     }
 
-    
     // Posibles metodos de fijado de fecha limite.
-    
     /**
      * Marca la tarea como completada.
      */

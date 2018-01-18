@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  * Clase que permite almacenar las tareas pendientes que tenemos por hacer.
@@ -123,6 +124,34 @@ class Todoist
             System.out.println(tareaMenosPrioritaria.getCadenaFormateada());
         }
     }
+    
+    /**
+     * Muestra la tarea con la fecha tope más inminente. Si hay empate,
+     * muestra todas las empatadas. Si no hay ninguna con fecha tope no muestra nada
+     */
+    public void muestraTareaMasInminente(){
+        ArrayList<Tarea> inminentes = new ArrayList<>();
+        if (tareas.size() > 0){
+            Tarea tareaMasInminente = new Tarea("");
+            tareaMasInminente.setFechaLimite(9999,12,31);
+            for(Tarea tarea : tareas){
+                if(tarea.getFechaLimite() != null && tarea.getFechaLimite().isAfter(LocalDate.now())){
+                    if(tarea.getFechaLimite().isBefore(tareaMasInminente.getFechaLimite())){
+                        inminentes = new ArrayList<>();
+                        tareaMasInminente = tarea;
+                        inminentes.add(tareaMasInminente);
+                    }
+
+                    else if(tarea.getFechaLimite().equals(tareaMasInminente.getFechaLimite())){
+                        inminentes.add(tareaMasInminente);
+                    }
+                }
+            }
+            for(Tarea tarea : inminentes){
+                System.out.println(tarea.getCadenaFormateada());
+            }  
+        }            
+    } 
     
     // Posibles metodos de fijado de fecha limite
     

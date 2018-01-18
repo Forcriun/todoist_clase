@@ -1,5 +1,3 @@
-
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -87,6 +85,41 @@ public class TodoistTest
         todoist1.imprimirTareaMasPrioritaria();
         todoist1.imprimirTareaMenosPrioritaria();
     }
+
+    @Test
+    public void testInminentes()
+    {
+        Todoist todoist2 = new Todoist();
+        System.out.println("Creamos una lista de 5 tareas con fechas variadas y las mostramos por pantalla:");
+        System.out.println();   
+        todoist2.addTarea("despertar");
+        todoist2.addTarea("desayunar");
+        todoist2.addTarea("marchar");
+        todoist2.addTarea("aprender");
+        todoist2.addTarea("volver");
+        todoist2.addTarea("comer");
+        todoist2.addTarea("sestear");
+        todoist2.addTarea("pasear");
+        todoist2.addTarea("estudiar");
+        todoist2.addTarea("cenar");
+        todoist2.addTarea("procrastinar");
+        todoist2.addTarea("dormir");
+        todoist2.fijarFechaLimite(1, 2018, 7, 22);
+        todoist2.fijarFechaLimite(2, 2016, 8, 13);
+        todoist2.fijarFechaLimite(3, 2019, 5, 5);
+        todoist2.fijarFechaLimite(4, 2021, 11, 30);
+        todoist2.fijarFechaLimite(6, 2018, 7, 22);
+        todoist2.fijarFechaLimite(7, 2019, 5, 5);
+        todoist2.fijarFechaLimite(8, 2023, 2, 18);
+        todoist2.fijarFechaLimite(11, 2018, 7, 22);
+        todoist2.mostrarTareasNumeradas();
+        System.out.println();
+        System.out.println();
+        System.out.println("Mostramos la o las más inminentes por pantalla:");
+        System.out.println();
+        todoist2.muestraTareaMasInminente();
+    }
 }
+
 
 
